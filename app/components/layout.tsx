@@ -39,7 +39,7 @@ const MobileAudioPlayer = ({
                             }}
                             className={`${liked ? 'text-red-500' : 'text-white'}`}
                         >
-                            <Heart className="w-4 h-4" />
+                            {/* <Heart className="w-4 h-4" /> */}
                         </button>
                         <button
                             onClick={(e) => {
@@ -47,7 +47,7 @@ const MobileAudioPlayer = ({
                                 setIsPlaying(!isPlaying);
                             }}
                         >
-                            {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
+                            {/* {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />} */}
                         </button>
                     </div>
                 </div>
