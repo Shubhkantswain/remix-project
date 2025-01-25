@@ -82,15 +82,16 @@ const AudioDetailPage: React.FC<AudioDetailPageProps> = ({
             {/* Scrollable Content */}
             <div className="h-full overflow-y-auto pb-20">
                 <div className="flex flex-col items-center px-6 pt-16 space-y-8">
-                    {/* Album Cover */}
-                    <div className="w-full max-w-96 aspect-square">
+                    {/* Album Cover - Centered */}
+                    <div className="w-full max-w-96 aspect-square flex justify-center items-center">
                         <img
                             src={'audioTrack.coverImage'}
-                            className="w-full h-full object-cover rounded-lg shadow-lg"
+                            className="w-full max-w-96 h-full max-h-96 object-cover rounded-lg shadow-lg"
+                            alt="Album Cover"
                         />
                     </div>
 
-                    {/* Header with Left Title and Right Icons */}
+                    {/* Rest of the component remains unchanged */}
                     <div className="w-full max-w-md flex justify-between items-center">
                         <div>
                             <h2 className="text-2xl font-bold text-white text-left">{'audioTrack.title'}</h2>
