@@ -53,7 +53,8 @@ const AudioDetailPage: React.FC<AudioDetailPageProps> = ({
                 {/* Main Content */}
                 <div className="px-4 sm:px-8 flex flex-col items-center">
                     {/* Album Art Container */}
-                    <div className="w-full max-w-md aspect-square mb-6 sm:mb-8">
+                    <div className={`w-full max-w-md aspect-square mb-6 sm:mb-8 transition-all duration-300 
+                        ${isPlaying ? 'scale-100' : 'scale-90 opacity-80'}`}>
                         <img
                             src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXA1xoHjwgaUQRbR2ijwtqLkVNU4xcJ0Rndg&s'}
                             alt={track.title}
@@ -81,7 +82,6 @@ const AudioDetailPage: React.FC<AudioDetailPageProps> = ({
                         </button>
                     </div>
 
-                    
                     {/* Progress Bar */}
                     <div className="w-full max-w-md mt-6 sm:mt-8">
                         <div className="flex justify-between text-xs text-gray-400 mb-2">
@@ -123,33 +123,37 @@ const AudioDetailPage: React.FC<AudioDetailPageProps> = ({
                         </button>
                     </div>
 
-                    {/* Volume Control - Now at Bottom */}
-                    <div className="fixed bottom-0 left-0 right-0 bg-[#1f1f1f] py-4 px-4 sm:px-8">
-                        <div className="w-full max-w-md mx-auto flex items-center space-x-4">
-                            <button className="text-gray-400 hover:text-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M11 5L6 9H2v6h4l5 4z" /><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
-                                </svg>
-                            </button>
-                            <input
-                                type="range"
-                                min="0"
-                                max="100"
-                                value={volume}
-                                onChange={(e) => setVolume(Number(e.target.value))}
-                                className="w-full h-1 bg-gray-700 rounded-full appearance-none cursor-pointer 
-                                    [&::-webkit-slider-thumb]:appearance-none 
-                                    [&::-webkit-slider-thumb]:w-4 
-                                    [&::-webkit-slider-thumb]:h-4 
-                                    [&::-webkit-slider-thumb]:bg-white 
-                                    [&::-webkit-slider-thumb]:rounded-full"
-                            />
-                            <button className="text-gray-400 hover:text-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M11 5L6 9H2v6h4l5 4z" />
-                                </svg>
-                            </button>
-                        </div>
+                    {/* Volume Control */}
+                    <div className="w-full max-w-md mt-6 sm:mt-8 flex items-center space-x-4">
+                        <button 
+                            onClick={() => setVolume(Math.max(0, volume - 10))}
+                            className="text-white"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-volume-1">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                                <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                            </svg>
+                        </button>
+                        
+                        <input 
+                            type="range" 
+                            min="0" 
+                            max="100" 
+                            value={volume} 
+                            onChange={(e) => setVolume(Number(e.target.value))}
+                            className="w-full h-1 bg-gray-700 rounded-full appearance-none cursor-pointer"
+                        />
+                        
+                        <button 
+                            onClick={() => setVolume(Math.min(100, volume + 10))}
+                            className="text-white"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-volume-2">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                                <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+                            </svg>
+                        </button>
                     </div>
                 </div>
             </div>
