@@ -67,7 +67,7 @@ const AudioDetailPage: React.FC<AudioDetailPageProps> = ({
         <div
             className={`fixed inset-0 bg-neutral-900 transition-transform duration-300 ease-in-out overflow-hidden
         ${isOpen ? 'translate-y-0' : 'translate-y-full'}`}
-            style={{ zIndex: 50 }}
+            style={{ zIndex: 100 }}
         >
             {/* Down Arrow */}
             <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10">
