@@ -64,8 +64,8 @@ const AudioDetailPage: React.FC<AudioDetailPageProps> = ({
                     {/* Track Info with Heart */}
                     <div className="text-center w-full max-w-md flex items-center justify-between">
                         <div className="text-left w-[calc(100%-40px)]">
-                            <h2 className="text-2xl sm:text-3xl md:text-3xl lg:text-3xl font-bold text-white mb-2 truncate max-w-full">{track.title}</h2>
-                            <div className="flex items-center space-x-2 text-gray-300 text-sm sm:text-base">
+                            <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-3xl lg:text-3xl font-bold text-white mb-2 truncate max-w-full">{track.title}</h2>
+                            <div className="flex items-center space-x-2 text-gray-300 text-xs sm:text-sm">
                                 <span className="truncate">{track.artist}</span>
                                 <span className="text-xs">•</span>
                                 <span className="truncate">{track.album}</span>
@@ -81,6 +81,7 @@ const AudioDetailPage: React.FC<AudioDetailPageProps> = ({
                         </button>
                     </div>
 
+                    
                     {/* Progress Bar */}
                     <div className="w-full max-w-md mt-6 sm:mt-8">
                         <div className="flex justify-between text-xs text-gray-400 mb-2">
@@ -93,7 +94,7 @@ const AudioDetailPage: React.FC<AudioDetailPageProps> = ({
                     </div>
 
                     {/* Player Controls */}
-                    <div className="flex justify-center items-center space-x-4 sm:space-x-6 mt-8 sm:mt-12 w-full max-w-md">
+                    <div className="flex justify-center items-center space-x-7 sm:space-x-6 mt-8 sm:mt-12 w-full max-w-md">
                         <button className="text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-rotate-ccw"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /></svg>
                         </button>
@@ -122,31 +123,33 @@ const AudioDetailPage: React.FC<AudioDetailPageProps> = ({
                         </button>
                     </div>
 
-                    {/* Volume Control */}
-                    <div className="mt-6 sm:mt-8 w-full max-w-md flex items-center space-x-4">
-                        <button className="text-gray-400 hover:text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M11 5L6 9H2v6h4l5 4z" /><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
-                            </svg>
-                        </button>
-                        <input
-                            type="range"
-                            min="0"
-                            max="100"
-                            value={volume}
-                            onChange={(e) => setVolume(Number(e.target.value))}
-                            className="w-full h-1 bg-gray-700 rounded-full appearance-none cursor-pointer 
-                                [&::-webkit-slider-thumb]:appearance-none 
-                                [&::-webkit-slider-thumb]:w-4 
-                                [&::-webkit-slider-thumb]:h-4 
-                                [&::-webkit-slider-thumb]:bg-white 
-                                [&::-webkit-slider-thumb]:rounded-full"
-                        />
-                        <button className="text-gray-400 hover:text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M11 5L6 9H2v6h4l5 4z" />
-                            </svg>
-                        </button>
+                    {/* Volume Control - Now at Bottom */}
+                    <div className="fixed bottom-0 left-0 right-0 bg-[#1f1f1f] py-4 px-4 sm:px-8">
+                        <div className="w-full max-w-md mx-auto flex items-center space-x-4">
+                            <button className="text-gray-400 hover:text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M11 5L6 9H2v6h4l5 4z" /><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
+                                </svg>
+                            </button>
+                            <input
+                                type="range"
+                                min="0"
+                                max="100"
+                                value={volume}
+                                onChange={(e) => setVolume(Number(e.target.value))}
+                                className="w-full h-1 bg-gray-700 rounded-full appearance-none cursor-pointer 
+                                    [&::-webkit-slider-thumb]:appearance-none 
+                                    [&::-webkit-slider-thumb]:w-4 
+                                    [&::-webkit-slider-thumb]:h-4 
+                                    [&::-webkit-slider-thumb]:bg-white 
+                                    [&::-webkit-slider-thumb]:rounded-full"
+                            />
+                            <button className="text-gray-400 hover:text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M11 5L6 9H2v6h4l5 4z" />
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
