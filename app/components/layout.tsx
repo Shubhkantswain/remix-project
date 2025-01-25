@@ -2,6 +2,7 @@ import React, { ReactNode, useState } from 'react';
 import { Home, Search, Library, User, Bell, Settings, Plus, Heart, Play, Pause, SkipForward, SkipBack } from 'lucide-react';
 import AudioDetailPage from './AudioDetailPage';
 
+
 const MobileAudioPlayer = ({
     track = {
         title: 'Blinding Lights',
@@ -11,19 +12,18 @@ const MobileAudioPlayer = ({
 }) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [liked, setLiked] = useState(false);
-
     const [isDetailsOpen, setIsDetailsOpen] = useState(false);
-
-    console.log("isDetailsOpen", isDetailsOpen);
 
     return (
         <>
-            <div className="md:hidden w-[95%] mx-auto rounded-lg py-2 px-3 bg-[#1f1f1f]"
+            <div
+                className="md:hidden w-[95%] mx-auto bg-[#1f1f1f] py-2 px-3 rounded-lg mb-2"
                 onClick={() => setIsDetailsOpen(true)}
             >
                 <div className="flex items-center space-x-3">
                     <img
                         src={"https://media.licdn.com/dms/image/v2/C4E0BAQHoBQsz2JsOqw/company-logo_200_200/company-logo_200_200/0/1631344197976?e=2147483647&v=beta&t=83zJTZOm4ClO6VXYjxOtf4WCsOtTwAUvYWwjelDVhjc"}
+
                         alt={`Album art for ${track.title}`}
                         className="w-10 h-10 rounded-md object-cover"
                     />
@@ -33,12 +33,22 @@ const MobileAudioPlayer = ({
                     </div>
                     <div className="flex items-center space-x-2">
                         <button
-                            onClick={() => setLiked(!liked)}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setLiked(!liked);
+                            }}
                             className={`${liked ? 'text-red-500' : 'text-white'}`}
                         >
+                            {/* Uncomment and import Heart from lucide-react if needed */}
                             {/* <Heart className="w-4 h-4" /> */}
                         </button>
-                        <button onClick={() => setIsPlaying(!isPlaying)}>
+                        <button
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setIsPlaying(!isPlaying);
+                            }}
+                        >
+                            {/* Uncomment and import Play/Pause from lucide-react if needed */}
                             {/* {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />} */}
                         </button>
                     </div>
@@ -48,6 +58,7 @@ const MobileAudioPlayer = ({
         </>
     );
 };
+
 
 const AppleMusicLayout = ({ children }: { children: ReactNode }) => {
     const [isNotificationOpen, setIsNotificationOpen] = useState(false);
