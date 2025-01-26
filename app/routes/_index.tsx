@@ -44,7 +44,7 @@ const PlaylistPage = () => {
     <AppleMusicLayout>
       <div className="text-white min-h-screen flex flex-col">
         {/* Header */}
-        <div className="flex flex-col md:flex-row px-3 sm:px-6 md:px-6 lg:px-8 xl:px-5 py-4 sm:py-6 space-y-6 md:space-y-0 md:space-x-8">
+        <div className="flex flex-col md:flex-row px-3 sm:px-6 md:px-6 lg:px-8 xl:px-5 py-4 sm:py-6 space-y-6 md:space-y-0 md:space-x-8 mt-6">
           {/* Cover Image */}
           <div className="self-center w-48 sm:w-64 md:w-64 lg:w-72 xl:w-80 aspect-square">
             <div className="relative w-full pb-[100%]">
@@ -73,7 +73,7 @@ const PlaylistPage = () => {
         </div>
 
         {/* Track List */}
-        <div className="flex-grow px-3 sm:px-6 md:px-6 lg:px-8 xl:px-5">
+        <div className="flex-grow px-3 sm:px-6 md:px-6 lg:px-8 xl:px-5 mt-4">
           {playlist.map((track, idx) => (
             <div 
               key={track.id} 
