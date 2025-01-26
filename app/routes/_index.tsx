@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import { MoreVertical } from 'lucide-react';
 import AppleMusicLayout from '~/components/layout';
 
 const PlaylistPage = () => {
@@ -78,12 +77,12 @@ const PlaylistPage = () => {
           {playlist.map((track, idx) => (
             <div 
               key={track.id} 
-              className={`flex items-center justify-between py-2 sm:py-3 md:py-3 rounded-lg  hover:bg-neutral-900 px-2 sm:px-2 ${idx%2 == 0 ? "bg-[#0d0d0f]": ""}`}
+              className={`flex items-center justify-between py-2 sm:py-3 md:py-3 rounded-lg hover:bg-neutral-900 px-2 sm:px-2 ${idx%2 == 0 ? "bg-[#0d0d0f]": ""}`}
             >
               <div className="flex items-center space-x-3 sm:space-x-4 w-full">
-                {/* Track Image */}
+                {/* Track Image - Increased size for small screens */}
                 <div 
-                  className={`w-10 sm:w-12 md:w-12 lg:w-12 h-10 sm:h-12 md:h-12 lg:h-12 rounded ${track.bg}`}
+                  className={`w-12 sm:w-14 md:w-12 lg:w-12 h-12 sm:h-14 md:h-12 lg:h-12 rounded ${track.bg}`}
                 />
                 <div className="flex-grow min-w-0">
                   <div className="flex items-center space-x-2">
@@ -94,7 +93,6 @@ const PlaylistPage = () => {
                   </div>
                   <p className="text-[10px] sm:text-xs md:text-xs lg:text-xs xl:text-sm text-neutral-400 truncate">{track.artist}</p>
                 </div>
-                {/* <MoreVertical className="w-3 h-3 sm:w-4 sm:h-4 md:w-4 md:h-4 lg:w-4 lg:h-4 xl:w-5 xl:h-5 text-neutral-400" /> */}
               </div>
             </div>
           ))}
