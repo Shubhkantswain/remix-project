@@ -30,16 +30,32 @@ const AudioDetailPage: React.FC<AudioDetailPageProps> = ({
     const [volume, setVolume] = useState<number>(50);
 
     return (
-        <div
-            className={`fixed inset-0 z-50 bg-gradient-to-b from-[#1f1f1f] to-black 
-                ${isOpen ? 'translate-y-0' : 'translate-y-full'}
-                transition-transform duration-300 ease-in-out overflow-hidden`}
-            style={{ zIndex: 100 }}
-        >
+        <div 
+        className={`fixed inset-0 z-50 
+            ${isOpen ? 'translate-y-0' : 'translate-y-full'}
+            transition-transform duration-300 ease-in-out overflow-hidden`}
+        style={{
+            zIndex: 100,
+            background: 'linear-gradient(-45deg, #121212, #1E1E1E, #0D0D0D, #2C2C2C, #1A1A1A, #3A3A3A, #111827, #1F2937, #18181B, #27272A)',
+            backgroundSize: '400% 400%',
+            animation: 'gradientBG 20s ease infinite',
+            position: 'absolute'
+        }}
+    >
+        <style>
+        {`
+            @keyframes gradientBG {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+            }
+        `}
+        </style>
+            
             {/* Scrollable Container */}
             <div className="h-full overflow-y-auto pb-24">
                 {/* Top Section with Down Arrow */}
-                <div className="sticky top-0 bg-[#1f1f1f] z-10 pt-4 flex justify-center items-center">
+                <div className="sticky top-0 bg-transparent z-10 pt-4 flex justify-center items-center">
                     <button
                         onClick={() => setIsOpen(false)}
                         className="text-white"
@@ -100,22 +116,22 @@ const AudioDetailPage: React.FC<AudioDetailPageProps> = ({
                         </button>
 
                         <button className="text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-skip-back"><polygon points="19 20 9 12 19 4 19 20" /><line x1="5" x2="5" y1="19" y2="5" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-skip-back"><polygon points="19 20 9 12 19 4 19 20" /><line x1="5" x2="5" y1="19" y2="5" /></svg>
                         </button>
 
                         <button
                             onClick={() => setIsPlaying(!isPlaying)}
-                            className="bg-white text-black rounded-full p-3 sm:p-4 hover:scale-105 transition-transform"
+                            className="bg-white rounded-full p-3 sm:p-4 hover:scale-105 transition-transform"
                         >
                             {isPlaying ? (
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-pause"><rect x="14" y="4" width="4" height="16" rx="1" /><rect x="6" y="4" width="4" height="16" rx="1" /></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="black" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-pause"><rect x="14" y="4" width="4" height="16" rx="1" /><rect x="6" y="4" width="4" height="16" rx="1" /></svg>
                             ) : (
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-play"><polygon points="6 3 20 12 6 21 6 3" /></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="black" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-play"><polygon points="6 3 20 12 6 21 6 3" /></svg>
                             )}
                         </button>
 
                         <button className="text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-skip-forward"><polygon points="5 4 15 12 5 20 5 4" /><line x1="19" x2="19" y1="5" y2="19" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-skip-forward"><polygon points="5 4 15 12 5 20 5 4" /><line x1="19" x2="19" y1="5" y2="19" /></svg>
                         </button>
 
                         <button className="text-white">
