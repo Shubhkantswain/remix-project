@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MoreVertical } from 'lucide-react';
+// import { MoreVertical } from 'lucide-react';
 import AppleMusicLayout from '~/components/layout';
 
 const PlaylistPage = () => {
@@ -94,7 +94,7 @@ const PlaylistPage = () => {
                   </div>
                   <p className="text-[10px] sm:text-xs md:text-xs lg:text-xs xl:text-sm text-neutral-400 truncate">{track.artist}</p>
                 </div>
-                <MoreVertical className="w-3 h-3 sm:w-4 sm:h-4 md:w-4 md:h-4 lg:w-4 lg:h-4 xl:w-5 xl:h-5 text-neutral-400" />
+                {/* <MoreVertical className="w-3 h-3 sm:w-4 sm:h-4 md:w-4 md:h-4 lg:w-4 lg:h-4 xl:w-5 xl:h-5 text-neutral-400" /> */}
               </div>
             </div>
           ))}
