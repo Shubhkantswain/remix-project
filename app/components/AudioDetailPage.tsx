@@ -74,7 +74,7 @@ const AudioDetailPage: React.FC<AudioDetailPageProps> = ({
 
                 <div className="px-4 sm:px-8 flex flex-col items-center">
                     <div className={`w-full max-w-md aspect-square mb-6 sm:mb-8 transition-all duration-300 
-                    ${isPlaying ? 'scale-100' : 'scale-90 opacity-80'}`}>
+                    ${isPlaying ? 'scale-100' : 'scale-75 opacity-80'}`}>
                         <img
                             src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXA1xoHjwgaUQRbR2ijwtqLkVNU4xcJ0Rndg&s'}
                             alt={track.title}
