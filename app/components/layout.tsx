@@ -2,8 +2,6 @@ import React, { ReactNode, useState } from 'react';
 import { Home, Search, Library, User, Bell, Settings, Plus, Heart, Play, Pause, SkipForward, SkipBack } from 'lucide-react';
 import AudioDetailPage from './AudioDetailPage';
 
-
-
 const MobileAudioPlayer = ({
     track = {
         title: 'Blinding Lights',
@@ -39,7 +37,7 @@ const MobileAudioPlayer = ({
                             }}
                             className={`${liked ? 'text-red-500' : 'text-white'}`}
                         >
-                            {/* <Heart className="w-4 h-4" /> */}
+                            <Heart className="w-4 h-4" />
                         </button>
                         <button
                             onClick={(e) => {
@@ -47,11 +45,12 @@ const MobileAudioPlayer = ({
                                 setIsPlaying(!isPlaying);
                             }}
                         >
-                            {/* {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />} */}
+                            {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
                         </button>
                     </div>
                 </div>
             </div>
+          
             <AudioDetailPage isOpen={isDetailsOpen} setIsOpen={setIsDetailsOpen} />
         </>
     );
@@ -74,16 +73,16 @@ const AppleMusicLayout = ({ children }: { children: ReactNode }) => {
                         <span className="text-lg">Search</span>
                     </div>
                     <div className="flex items-center space-x-3">
-                        {/* <Library className="w-6 h-6" /> */}
+                        <Library className="w-6 h-6" />
                         <span className="text-lg">Library</span>
                     </div>
                     <div className="border-t border-zinc-700 mt-4 pt-4">
                         <div className="flex items-center space-x-3">
-                            {/* <Plus className="w-6 h-6" /> */}
+                            <Plus className="w-6 h-6" />
                             <span className="text-lg">Create Playlist</span>
                         </div>
                         <div className="flex items-center space-x-3 mt-4">
-                            {/* <Heart className="w-6 h-6 text-red-500" /> */}
+                            <Heart className="w-6 h-6 text-red-500" />
                             <span className="text-lg">Liked Songs</span>
                         </div>
                     </div>
@@ -108,7 +107,7 @@ const AppleMusicLayout = ({ children }: { children: ReactNode }) => {
                             onClick={() => setIsNotificationOpen(!isNotificationOpen)}
                             className="relative hover:text-gray-300"
                         >
-                            {/* <Bell className="w-6 h-6" /> */}
+                            <Bell className="w-6 h-6" />
                             {isNotificationOpen && (
                                 <div className="absolute top-full right-0 mt-2 w-64 bg-zinc-800 rounded-lg shadow-lg p-4 z-50">
                                     <p className="text-sm">No new notifications</p>
@@ -117,18 +116,18 @@ const AppleMusicLayout = ({ children }: { children: ReactNode }) => {
                         </button>
 
                         <button className="hover:text-gray-300">
-                            {/* <Settings className="w-/6 h-6" /> */}
+                            <Settings className="w-6 h-6" />
                         </button>
 
                         <button className="flex items-center space-x-2 bg-white/10 hover:bg-white/20 rounded-full px-3 py-1 transition-colors">
-                            {/* <User className="w-5 h-5" /> */}
-                            {/* <span className="hidden md:block text-sm">Profile</span> */}
+                            <User className="w-5 h-5" />
+                            <span className="hidden md:block text-sm">Profile</span>
                         </button>
                     </div>
                 </header>
 
-                {/* Main Content Area */}
-                <main className="flex-grow overflow-y-auto p-0 bg-gradient-to-b from-zinc-900 to-black">
+                {/* Main Content Area - Added mb-32 for mobile to prevent content hiding */}
+                <main className="flex-grow overflow-y-auto p-0 bg-gradient-to-b from-zinc-900 to-black mb-32 md:mb-0 pb-4">
                     {children}
                 </main>
 

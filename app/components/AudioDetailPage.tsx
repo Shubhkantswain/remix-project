@@ -30,32 +30,38 @@ const AudioDetailPage: React.FC<AudioDetailPageProps> = ({
     const [volume, setVolume] = useState<number>(50);
 
     return (
-        <div 
-        className={`fixed inset-0 z-50 
-            ${isOpen ? 'translate-y-0' : 'translate-y-full'}
-            transition-transform duration-300 ease-in-out overflow-hidden`}
-        style={{
-            zIndex: 100,
-            background: 'linear-gradient(-45deg, #121212, #1E1E1E, #0D0D0D, #2C2C2C, #1A1A1A, #3A3A3A, #111827, #1F2937, #18181B, #27272A)',
-            backgroundSize: '400% 400%',
-            animation: 'gradientBG 20s ease infinite',
-            position: 'absolute'
-        }}
-    >
-        <style>
-        {`
+        <div
+            className={`fixed inset-0 z-50 
+            ${isOpen
+                    ? 'translate-y-0 opacity-100 pointer-events-auto'
+                    : 'translate-y-full opacity-0 pointer-events-none'
+                }
+            transition-all duration-300 ease-in-out overflow-hidden`}
+            style={{
+                zIndex: 100,
+                background: 'linear-gradient(-45deg, #121212, #1E1E1E, #0D0D0D, #2C2C2C, #1A1A1A, #3A3A3A, #111827, #1F2937, #18181B, #27272A)',
+                backgroundSize: '400% 400%',
+                animation: 'gradientBG 20s ease infinite',
+                position: 'fixed'
+            }}
+        >
+            <style>
+                {`
             @keyframes gradientBG {
                 0% { background-position: 0% 50%; }
                 50% { background-position: 100% 50%; }
                 100% { background-position: 0% 50%; }
             }
         `}
-        </style>
-            
-            {/* Scrollable Container */}
-            <div className="h-full overflow-y-auto pb-24">
-                {/* Top Section with Down Arrow */}
-                <div className="sticky top-0 bg-transparent z-10 pt-4 flex justify-center items-center">
+            </style>
+
+            <div
+                className="h-full overflow-y-auto pb-24"
+                style={{
+                    overscrollBehavior: 'contain'
+                }}
+            >
+                <div className="sticky top-0 z-10 pt-4 flex justify-center items-center">
                     <button
                         onClick={() => setIsOpen(false)}
                         className="text-white"
@@ -66,11 +72,9 @@ const AudioDetailPage: React.FC<AudioDetailPageProps> = ({
                     </button>
                 </div>
 
-                {/* Main Content */}
                 <div className="px-4 sm:px-8 flex flex-col items-center">
-                    {/* Album Art Container */}
                     <div className={`w-full max-w-md aspect-square mb-6 sm:mb-8 transition-all duration-300 
-                        ${isPlaying ? 'scale-100' : 'scale-90 opacity-80'}`}>
+                    ${isPlaying ? 'scale-100' : 'scale-90 opacity-80'}`}>
                         <img
                             src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXA1xoHjwgaUQRbR2ijwtqLkVNU4xcJ0Rndg&s'}
                             alt={track.title}
@@ -78,7 +82,6 @@ const AudioDetailPage: React.FC<AudioDetailPageProps> = ({
                         />
                     </div>
 
-                    {/* Track Info with Heart */}
                     <div className="text-center w-full max-w-md flex items-center justify-between">
                         <div className="text-left w-[calc(100%-40px)]">
                             <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-3xl lg:text-3xl font-bold text-white mb-2 truncate max-w-full">{track.title}</h2>
@@ -98,7 +101,6 @@ const AudioDetailPage: React.FC<AudioDetailPageProps> = ({
                         </button>
                     </div>
 
-                    {/* Progress Bar */}
                     <div className="w-full max-w-md mt-6 sm:mt-8">
                         <div className="flex justify-between text-xs text-gray-400 mb-2">
                             <span>0:00</span>
@@ -109,7 +111,6 @@ const AudioDetailPage: React.FC<AudioDetailPageProps> = ({
                         </div>
                     </div>
 
-                    {/* Player Controls */}
                     <div className="flex justify-center items-center space-x-7 sm:space-x-6 mt-8 sm:mt-12 w-full max-w-md">
                         <button className="text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-rotate-ccw"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /></svg>
@@ -139,9 +140,8 @@ const AudioDetailPage: React.FC<AudioDetailPageProps> = ({
                         </button>
                     </div>
 
-                    {/* Volume Control */}
                     <div className="w-full max-w-md mt-6 sm:mt-8 flex items-center space-x-4">
-                        <button 
+                        <button
                             onClick={() => setVolume(Math.max(0, volume - 10))}
                             className="text-white"
                         >
@@ -150,17 +150,17 @@ const AudioDetailPage: React.FC<AudioDetailPageProps> = ({
                                 <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
                             </svg>
                         </button>
-                        
-                        <input 
-                            type="range" 
-                            min="0" 
-                            max="100" 
-                            value={volume} 
+
+                        <input
+                            type="range"
+                            min="0"
+                            max="100"
+                            value={volume}
                             onChange={(e) => setVolume(Number(e.target.value))}
                             className="w-full h-1 bg-gray-700 rounded-full appearance-none cursor-pointer"
                         />
-                        
-                        <button 
+
+                        <button
                             onClick={() => setVolume(Math.min(100, volume + 10))}
                             className="text-white"
                         >
