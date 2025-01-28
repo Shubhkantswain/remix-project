@@ -5,7 +5,7 @@ const MusicPlayerLayout = ({ children }) => {
   const [isMuted, setIsMuted] = useState(false);
 
   return (
-    <div className="h-screen overflow-y-auto bg-black text-white relative">
+    <div className="h-screen bg-black text-white relative">
       {/* Header */}
       <header className="sticky top-0 z-40 bg-black/80 backdrop-blur-lg border-b border-gray-600">
         <div className="flex items-center justify-between px-4 lg:px-6 py-4">
@@ -52,7 +52,6 @@ const MusicPlayerLayout = ({ children }) => {
               </button>
               <button className="hover:text-blue-500 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-library-big"><rect width="8" height="18" x="3" y="3" rx="1" /><path d="M7 3v18" /><path d="M20.4 18.9c.2.5-.1 1.1-.6 1.3l-1.9.7c-.5.2-1.1-.1-1.3-.6L11.1 5.1c-.2-.5.1-1.1.6-1.3l1.9-.7c.5-.2 1.1.1 1.3.6Z" /></svg>
-
               </button>
               <button className="hover:text-blue-500 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-search"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>
@@ -73,12 +72,12 @@ const MusicPlayerLayout = ({ children }) => {
       </header>
 
       {/* Main Content */}
-      <main className="min-h-[calc(100vh-144px)]">
+      <main className="overflow-y-auto pb-24">
         {children}
       </main>
 
       {/* Playback Controller */}
-      <div className="sticky bottom-0 z-40 bg-black/80 backdrop-blur-lg border-t border-gray-800">
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-lg border-t border-gray-800">
         {/* Progress Bar */}
         <div className="w-full h-1 bg-gray-800">
           <div className="relative w-1/3 h-full bg-blue-500 group">
