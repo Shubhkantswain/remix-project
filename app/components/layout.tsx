@@ -72,7 +72,7 @@ const MusicPlayerLayout = ({ children }) => {
       </header>
 
       {/* Main Content */}
-      <main className="overflow-y-auto pb-24">
+      <main className="overflow-y-auto pb-24 bg-gradient-to-b from-zinc-900 to-black">
         {children}
       </main>
 
