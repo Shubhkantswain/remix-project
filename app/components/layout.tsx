@@ -73,11 +73,8 @@ const MusicPlayerLayout = ({ children }) => {
 
       {/* Main Content */}
       <main className="flex-1 overflow-y-auto pb-24 bg-gradient-to-b from-black via-neutral-900 to-black text-gray-300">
-  {children}
-</main>
-
-
-
+        {children}
+      </main>
 
       {/* Playback Controller */}
       <div className="fixed bottom-0 left-0 right-0 z-40 bg-black/70 backdrop-blur-lg border-t border-gray-800">
