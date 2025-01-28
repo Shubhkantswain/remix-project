@@ -72,9 +72,12 @@ const MusicPlayerLayout = ({ children }) => {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto pb-24">
-        {children}
-      </main>
+      <main className="flex-1 overflow-y-auto pb-24 bg-gradient-to-b from-black via-neutral-900 to-black text-gray-300">
+  {children}
+</main>
+
+
+
 
       {/* Playback Controller */}
       <div className="fixed bottom-0 left-0 right-0 z-40 bg-black/70 backdrop-blur-lg border-t border-gray-800">
@@ -124,7 +127,7 @@ const MusicPlayerLayout = ({ children }) => {
                   setIsMuted(false);
                 }}
               >
-               
+
               </button>
 
               {/* Animated Volume Slider */}
