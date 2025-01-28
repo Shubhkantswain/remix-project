@@ -61,7 +61,7 @@ const AppleMusicHomepage = () => {
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {songs.map((song) => (
-              <div key={song.id} className="flex-none w-36 sm:w-40 md:w-44">
+              <div key={song.id} className="flex-none w-36 sm:w-37 md:w-44">
                 <div className="group relative overflow-hidden rounded-lg">
                   <img
                     src={song.cover}
