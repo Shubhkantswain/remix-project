@@ -5,9 +5,9 @@ const MusicPlayerLayout = ({ children }) => {
   const [isMuted, setIsMuted] = useState(false);
 
   return (
-    <div className="h-screen bg-black text-white relative">
+    <div className="bg-black text-white min-h-screen flex flex-col">
       {/* Header */}
-      <header className="sticky top-0 z-40 bg-black/80 backdrop-blur-lg border-b border-gray-600">
+      <header className="sticky top-0 z-40 bg-black/70 backdrop-blur-lg border-b border-gray-600">
         <div className="flex items-center justify-between px-4 lg:px-6 py-4">
           {/* Logo */}
           <div className="flex items-center">
@@ -72,12 +72,12 @@ const MusicPlayerLayout = ({ children }) => {
       </header>
 
       {/* Main Content */}
-      <main className="overflow-y-auto pb-24 bg-gradient-to-b from-zinc-900 to-black">
+      <main className="flex-1 overflow-y-auto pb-24">
         {children}
       </main>
 
       {/* Playback Controller */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-lg border-t border-gray-800">
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-black/70 backdrop-blur-lg border-t border-gray-800">
         {/* Progress Bar */}
         <div className="w-full h-1 bg-gray-800">
           <div className="relative w-1/3 h-full bg-blue-500 group">
