@@ -78,7 +78,8 @@ const MusicPlayerLayout = ({ children }) => {
       </main>
 
       {/* Playback Controller */}
-      <div className="sticky bottom-0 z-40 bg-black/80 backdrop-blur-lg border-t border-gray-800">
+      {/* Playback Controller */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-lg border-t border-gray-800">
         {/* Progress Bar */}
         <div className="w-full h-1 bg-gray-800">
           <div className="relative w-1/3 h-full bg-blue-500 group">
@@ -125,7 +126,7 @@ const MusicPlayerLayout = ({ children }) => {
                   setIsMuted(false);
                 }}
               >
-               
+
               </button>
 
               {/* Animated Volume Slider */}
