@@ -24,7 +24,7 @@ const AppleMusicHomepage = () => {
 
   return (
     <MusicPlayerLayout>
-      <div className=" text-white p-4 sm:p-6 md:p-8">
+      <div className="text-white p-4 sm:p-6 md:p-8">
         <header className="mb-6 md:mb-8">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
             <div>
@@ -57,7 +57,7 @@ const AppleMusicHomepage = () => {
         <div className="relative">
           <div
             id="song-container"
-            className="flex gap-4 sm:gap-5 md:gap-8 overflow-x-auto scrollbar-hide scroll-smooth"
+            className="flex gap-4 sm:gap-5 md:gap-8 overflow-x-auto scrollbar-hide scroll-smooth [-webkit-overflow-scrolling:touch] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {songs.map((song) => (
@@ -70,7 +70,7 @@ const AppleMusicHomepage = () => {
                   />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <button className="w-10 h-10 sm:w-12 sm:h-12 bg-red-500 rounded-full flex items-center justify-center opacity-0 transform translate-y-4 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-play"><polygon points="6 3 20 12 6 21 6 3" /></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-play"><polygon points="6 3 20 12 6 21 6 3" /></svg>
                     </button>
                   </div>
                 </div>
@@ -84,7 +84,111 @@ const AppleMusicHomepage = () => {
         <div className="relative mt-20">
           <div
             id="song-container"
-            className="flex gap-4 sm:gap-5 md:gap-8 overflow-x-auto scrollbar-hide scroll-smooth"
+            className="flex gap-4 sm:gap-5 md:gap-8 overflow-x-auto scrollbar-hide scroll-smooth [-webkit-overflow-scrolling:touch] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {songs.map((song) => (
+              <div key={song.id} className="flex-none w-36 sm:w-40 md:w-44">
+                <div className="group relative overflow-hidden rounded-lg">
+                  <img
+                    src={song.cover}
+                    alt={song.title}
+                    className="w-full aspect-square rounded-lg shadow-lg transition-opacity duration-300 group-hover:opacity-40 object-cover"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <button className="w-10 h-10 sm:w-12 sm:h-12 bg-red-500 rounded-full flex items-center justify-center opacity-0 transform translate-y-4 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-play"><polygon points="6 3 20 12 6 21 6 3" /></svg>
+                    </button>
+                  </div>
+                </div>
+                <h3 className="mt-2 font-semibold truncate text-xs sm:text-sm md:text-base">{song.title}</h3>
+                <p className="text-gray-400 text-xs sm:text-sm truncate text-[10px] md:text-sm">{song.artist}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="relative mt-20">
+          <div
+            id="song-container"
+            className="flex gap-4 sm:gap-5 md:gap-8 overflow-x-auto scrollbar-hide scroll-smooth [-webkit-overflow-scrolling:touch] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {songs.map((song) => (
+              <div key={song.id} className="flex-none w-36 sm:w-40 md:w-44">
+                <div className="group relative overflow-hidden rounded-lg">
+                  <img
+                    src={song.cover}
+                    alt={song.title}
+                    className="w-full aspect-square rounded-lg shadow-lg transition-opacity duration-300 group-hover:opacity-40 object-cover"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <button className="w-10 h-10 sm:w-12 sm:h-12 bg-red-500 rounded-full flex items-center justify-center opacity-0 transform translate-y-4 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-play"><polygon points="6 3 20 12 6 21 6 3" /></svg>
+                    </button>
+                  </div>
+                </div>
+                <h3 className="mt-2 font-semibold truncate text-xs sm:text-sm md:text-base">{song.title}</h3>
+                <p className="text-gray-400 text-xs sm:text-sm truncate text-[10px] md:text-sm">{song.artist}</p>
+              </div>
+            ))}
+          </div>
+        </div> <div className="relative mt-20">
+          <div
+            id="song-container"
+            className="flex gap-4 sm:gap-5 md:gap-8 overflow-x-auto scrollbar-hide scroll-smooth [-webkit-overflow-scrolling:touch] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {songs.map((song) => (
+              <div key={song.id} className="flex-none w-36 sm:w-40 md:w-44">
+                <div className="group relative overflow-hidden rounded-lg">
+                  <img
+                    src={song.cover}
+                    alt={song.title}
+                    className="w-full aspect-square rounded-lg shadow-lg transition-opacity duration-300 group-hover:opacity-40 object-cover"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <button className="w-10 h-10 sm:w-12 sm:h-12 bg-red-500 rounded-full flex items-center justify-center opacity-0 transform translate-y-4 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-play"><polygon points="6 3 20 12 6 21 6 3" /></svg>
+                    </button>
+                  </div>
+                </div>
+                <h3 className="mt-2 font-semibold truncate text-xs sm:text-sm md:text-base">{song.title}</h3>
+                <p className="text-gray-400 text-xs sm:text-sm truncate text-[10px] md:text-sm">{song.artist}</p>
+              </div>
+            ))}
+          </div>
+        </div> <div className="relative mt-20">
+          <div
+            id="song-container"
+            className="flex gap-4 sm:gap-5 md:gap-8 overflow-x-auto scrollbar-hide scroll-smooth [-webkit-overflow-scrolling:touch] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {songs.map((song) => (
+              <div key={song.id} className="flex-none w-36 sm:w-40 md:w-44">
+                <div className="group relative overflow-hidden rounded-lg">
+                  <img
+                    src={song.cover}
+                    alt={song.title}
+                    className="w-full aspect-square rounded-lg shadow-lg transition-opacity duration-300 group-hover:opacity-40 object-cover"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <button className="w-10 h-10 sm:w-12 sm:h-12 bg-red-500 rounded-full flex items-center justify-center opacity-0 transform translate-y-4 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-play"><polygon points="6 3 20 12 6 21 6 3" /></svg>
+                    </button>
+                  </div>
+                </div>
+                <h3 className="mt-2 font-semibold truncate text-xs sm:text-sm md:text-base">{song.title}</h3>
+                <p className="text-gray-400 text-xs sm:text-sm truncate text-[10px] md:text-sm">{song.artist}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="relative mt-20">
+          <div
+            id="song-container"
+            className="flex gap-4 sm:gap-5 md:gap-8 overflow-x-auto scrollbar-hide scroll-smooth [-webkit-overflow-scrolling:touch] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {songs.map((song) => (
@@ -112,7 +216,7 @@ const AppleMusicHomepage = () => {
         <div className="relative mt-20">
           <div
             id="song-container"
-            className="flex gap-4 sm:gap-5 md:gap-8 overflow-x-auto scrollbar-hide scroll-smooth"
+            className="flex gap-4 sm:gap-5 md:gap-8 overflow-x-auto scrollbar-hide scroll-smooth [-webkit-overflow-scrolling:touch] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {songs.map((song) => (
@@ -135,6 +239,35 @@ const AppleMusicHomepage = () => {
             ))}
           </div>
         </div>
+
+
+        <div className="relative mt-20">
+          <div
+            id="song-container"
+            className="flex gap-4 sm:gap-5 md:gap-8 overflow-x-auto scrollbar-hide scroll-smooth [-webkit-overflow-scrolling:touch] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {songs.map((song) => (
+              <div key={song.id} className="flex-none w-36 sm:w-40 md:w-44">
+                <div className="group relative overflow-hidden rounded-lg">
+                  <img
+                    src={song.cover}
+                    alt={song.title}
+                    className="w-full aspect-square rounded-lg shadow-lg transition-opacity duration-300 group-hover:opacity-40 object-cover"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <button className="w-10 h-10 sm:w-12 sm:h-12 bg-red-500 rounded-full flex items-center justify-center opacity-0 transform translate-y-4 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-play"><polygon points="6 3 20 12 6 21 6 3" /></svg>
+                    </button>
+                  </div>
+                </div>
+                <h3 className="mt-2 font-semibold truncate text-xs sm:text-sm md:text-base">{song.title}</h3>
+                <p className="text-gray-400 text-xs sm:text-sm truncate text-[10px] md:text-sm">{song.artist}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
     </MusicPlayerLayout>
   );
