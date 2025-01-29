@@ -146,8 +146,8 @@ const MusicPlayerLayout = ({ children }) => {
             </div>
           </div>
         </div>
-      </div>
       <AudioDetailPage isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      </div>
     </>
   );
 };
