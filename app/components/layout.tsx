@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import AudioDetailPage from './AudioDetailPage';
-import { Play, SkipForward } from 'lucide-react';
+import { Link } from '@remix-run/react';
 
 const MusicPlayerLayout = ({ children }) => {
   const [showVolume, setShowVolume] = useState(false);
@@ -16,18 +16,22 @@ const MusicPlayerLayout = ({ children }) => {
           <div className="flex items-center justify-between px-4 lg:px-6 py-4">
             {/* Logo */}
             <div className="flex items-center">
-              <span className="text-xl font-bold mr-9">FlowTune</span>
+              <span className="text-xl font-bold mr-11">FlowTune</span>
 
               {/* Desktop Navigation */}
-              <nav className="hidden md:flex items-center space-x-9">
-                <button className="flex items-center hover:text-blue-500 transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-house"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg>
-                  <span className="hidden lg:inline ml-2 font-semibold">Home</span>
-                </button>
-                <button className="flex items-center hover:text-blue-500 transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-compass"><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z" /><circle cx="12" cy="12" r="10" /></svg>
-                  <span className="hidden lg:inline ml-2">Podcast</span>
-                </button>
+              <nav className="hidden md:flex items-center space-x-11">
+                <Link to={"/"}>
+                  <button className="flex items-center hover:text-blue-500 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-house"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg>
+                    <span className="hidden lg:inline ml-2 font-semibold">Home</span>
+                  </button>
+                </Link>
+                <Link to={"/playlist"}>
+                  <button className="flex items-center hover:text-blue-500 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-compass"><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z" /><circle cx="12" cy="12" r="10" /></svg>
+                    <span className="hidden lg:inline ml-2">Podcast</span>
+                  </button>
+                </Link>
                 <button className="flex items-center hover:text-blue-500 transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-library-big"><rect width="8" height="18" x="3" y="3" rx="1" /><path d="M7 3v18" /><path d="M20.4 18.9c.2.5-.1 1.1-.6 1.3l-1.9.7c-.5.2-1.1-.1-1.3-.6L11.1 5.1c-.2-.5.1-1.1.6-1.3l1.9-.7c.5-.2 1.1.1 1.3.6Z" /></svg>
                   <span className="hidden lg:inline ml-2">Library</span>
@@ -49,12 +53,16 @@ const MusicPlayerLayout = ({ children }) => {
 
               {/* Mobile Icons */}
               <div className="flex md:hidden items-center space-x-5">
+               <Link to={"/"}>
                 <button className="hover:text-blue-500 transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-house"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg>
                 </button>
+               </Link>
+               <Link to={"/playlist"}>
                 <button className="hover:text-blue-500 transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-compass"><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z" /><circle cx="12" cy="12" r="10" /></svg>
                 </button>
+               </Link>
                 <button className="hover:text-blue-500 transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-library-big"><rect width="8" height="18" x="3" y="3" rx="1" /><path d="M7 3v18" /><path d="M20.4 18.9c.2.5-.1 1.1-.6 1.3l-1.9.7c-.5.2-1.1-.1-1.3-.6L11.1 5.1c-.2-.5.1-1.1.6-1.3l1.9-.7c.5-.2 1.1.1 1.3.6Z" /></svg>
                 </button>
@@ -85,7 +93,7 @@ const MusicPlayerLayout = ({ children }) => {
         <div className="fixed bottom-0 left-0 right-0 z-40 bg-black/70 backdrop-blur-lg border-t border-gray-800">
           {/* Progress Bar */}
           <div className="w-full h-1 bg-gray-800">
-            <div className="relative w-1/3 h-full bg-blue-500 group">
+            <div className="relative w-1/3 h-full bg-white group">
               <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </div>
           </div>
