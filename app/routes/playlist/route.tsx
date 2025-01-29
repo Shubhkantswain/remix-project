@@ -8,7 +8,7 @@ const PlaylistPage = () => {
 
   const playlist = {
     title: "Today's Top Hits",
-    coverImage: 'https://m.media-amazon.com/images/I/41u8hprs3sL._UX250_FMwebp_QL85_.jpg',
+    coverImage: 'https://m.media-amazon.com/images/S/dmp-catalog-images-prod/images/b66b1ed4-7586-4301-8a02-fa942c74b39b/b66b1ed4-7586-4301-8a02-fa942c74b39b/f87f83f5-3ba9-4e2d-ae63-e186e1ac6043-2127985474._UX358_FMwebp_QL85_.jpg',
     description: "The most popular tracks right now",
     totalSongs: 50,
     duration: "2 hr 45 min",
