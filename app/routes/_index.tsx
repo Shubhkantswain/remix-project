@@ -61,7 +61,7 @@ const AppleMusicHomepage = () => {
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {songs.map((song) => (
-              <div key={song.id} className="flex-none w-36 sm:w-37 md:w-44">
+              <div key={song.id} className="flex-none w-36 sm:w-40 md:w-44">
                 <div className="group relative overflow-hidden rounded-lg">
                   <img
                     src={song.cover}
@@ -241,7 +241,7 @@ const AppleMusicHomepage = () => {
         </div>
 
 
-        <div className="relative mt-20">
+         <div className="relative mt-20">
           <div
             id="song-container"
             className="flex gap-4 sm:gap-5 md:gap-8 overflow-x-auto scrollbar-hide scroll-smooth [-webkit-overflow-scrolling:touch] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
