@@ -21,13 +21,13 @@ const NowPlaying: React.FC<NowPlayingProps> = ({ showDetails, setShowDetails }) 
 
   return (
     <div
-      className={`fixed inset-0 bg-black overflow-y-auto transition-all duration-300 ease-out z-50  ${
+      className={`fixed inset-0 bg-black overflow-y-auto will-change-transform transform-gpu transition-transform duration-300 ease-in-out z-50 ${
         showDetails ? 'translate-y-0' : 'translate-y-full'
       }`}
     >
       {/* Enhanced Smooth Animated Gradient Background */}
       <div 
-        className="fixed inset-0 z-0 opacity-40"
+        className="fixed inset-0 z-0 opacity-40 will-change-transform"
         style={{
           background: 'linear-gradient(-45deg, #2C3E50, #BDC3C7, #3498DB, #ECF0F1, #34495E, #95A5A6, #E0E0E0)',
           backgroundSize: '400% 400%',
@@ -78,7 +78,7 @@ const NowPlaying: React.FC<NowPlayingProps> = ({ showDetails, setShowDetails }) 
         {/* Album Art and Info */}
         <div className="px-8 pt-8">
           <div 
-            className={`aspect-square w-full max-w-md mx-auto bg-zinc-800 rounded-lg mb-8 transition-all duration-500 ease-out transform ${
+            className={`aspect-square w-full max-w-md mx-auto bg-zinc-800 rounded-lg mb-8 will-change-transform transition-transform duration-500 ease-out transform ${
               isPlaying ? 'scale-100' : 'scale-95'
             }`}
           >
