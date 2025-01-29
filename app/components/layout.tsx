@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import AudioDetailPage from './AudioDetailPage';
+import { Play, SkipForward } from 'lucide-react';
 
 const MusicPlayerLayout = ({ children }) => {
   const [showVolume, setShowVolume] = useState(false);
@@ -9,7 +10,7 @@ const MusicPlayerLayout = ({ children }) => {
 
   return (
     <>
-    <div className="bg-black text-white min-h-screen flex flex-col">
+      <div className="bg-black text-white min-h-screen flex flex-col">
         {/* Header */}
         <header className="sticky top-0 z-40 bg-black/40 backdrop-blur-lg border-b border-gray-600">
           <div className="flex items-center justify-between px-4 lg:px-6 py-4">
@@ -47,7 +48,7 @@ const MusicPlayerLayout = ({ children }) => {
               </div>
 
               {/* Mobile Icons */}
-              <div className="flex md:hidden items-center space-x-4">
+              <div className="flex md:hidden items-center space-x-5">
                 <button className="hover:text-blue-500 transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-house"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg>
                 </button>
@@ -81,7 +82,7 @@ const MusicPlayerLayout = ({ children }) => {
         </main>
 
         {/* Playback Controller */}
-        <div className="fixed bottom-0 left-0 right-0 z-40 bg-black/70 backdrop-blur-lg border-t border-gray-800" onClick={() => setIsOpen(true)}>
+        <div className="fixed bottom-0 left-0 right-0 z-40 bg-black/70 backdrop-blur-lg border-t border-gray-800">
           {/* Progress Bar */}
           <div className="w-full h-1 bg-gray-800">
             <div className="relative w-1/3 h-full bg-blue-500 group">
@@ -92,12 +93,16 @@ const MusicPlayerLayout = ({ children }) => {
           <div className="px-4 py-3 flex items-center justify-between">
             {/* Left: Track Info */}
             <div className="flex items-center flex-1 min-w-0 md:w-1/3">
-              <div className="w-12 h-12 bg-gray-800 rounded-md overflow-hidden mr-3 flex-shrink-0">
+              <div className="w-12 h-12 bg-gray-800 rounded-md overflow-hidden mr-3 flex-shrink-0 relative group cursor-pointer" onClick={() => setIsOpen(true)}>
                 <img
                   src="https://m.media-amazon.com/images/I/51BSAVzJj3L._UX250_FMwebp_QL85_.jpg"
                   alt="Album Art"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:opacity-75 transition-opacity"
                 />
+                {/* Maximize Icon Overlay */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-maximize-2"><polyline points="15 3 21 3 21 9" /><polyline points="9 21 3 21 3 15" /><line x1="21" x2="14" y1="3" y2="10" /><line x1="3" x2="10" y1="21" y2="14" /></svg>
+                </div>
               </div>
               <div className="min-w-0">
                 <div className="font-medium text-white truncate">Current Track Name That Might Be Long</div>
@@ -139,8 +144,6 @@ const MusicPlayerLayout = ({ children }) => {
               <button className="w-10 h-10 text-white rounded-full flex items-center justify-center hover:scale-105 transition-transform md:hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-heart"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /></svg>
               </button>
-
-
 
               {/* Volume Control (Hidden on Small Screens) */}
               <div className="hidden md:flex items-center justify-end">
