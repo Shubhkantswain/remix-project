@@ -105,8 +105,13 @@ const MusicPlayerLayout = ({ children }) => {
               </div>
             </div>
 
-            {/* Center: Playback Controls */}
-            <div className="flex items-center justify-center flex-1 md:w-1/3 space-x-2 md:space-x-4">
+            {/* Center: Playback Controls (Hidden on Small Screens) */}
+            <div className="hidden md:flex items-center justify-center flex-1 md:w-1/3 space-x-2 md:space-x-4">
+              {/* Skip Backward 10s Button (Visible on Larger Screens, Hidden on Medium Screens) */}
+              <button className="p-2 text-white hover:text-white transition-colors hidden lg:block md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-rewind"><polygon points="11 19 2 12 11 5 11 19" /><polygon points="22 19 13 12 22 5 22 19" /></svg>
+              </button>
+
               <button className="p-2 text-white hover:text-white transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-skip-back"><polygon points="19 20 9 12 19 4 19 20" /><line x1="5" x2="5" y1="19" y2="5" /></svg>
               </button>
@@ -116,38 +121,58 @@ const MusicPlayerLayout = ({ children }) => {
               <button className="p-2 text-white hover:text-white transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-skip-forward"><polygon points="5 4 15 12 5 20 5 4" /><line x1="19" x2="19" y1="5" y2="19" /></svg>
               </button>
+
+              {/* Skip Forward 10s Button (Visible on Larger Screens, Hidden on Medium Screens) */}
+              <button className="p-2 text-white hover:text-white transition-colors hidden lg:block md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-fast-forward"><polygon points="13 19 22 12 13 5 13 19" /><polygon points="2 19 11 12 2 5 2 19" /></svg>
+              </button>
             </div>
 
-            {/* Right: Volume Control */}
-            <div className="flex items-center justify-end flex-1 md:w-1/3">
-              <div className="relative">
-                <button
-                  className="p-2 text-gray-400 hover:text-white transition-colors"
-                  onClick={() => {
-                    setShowVolume(!showVolume);
-                    setIsMuted(false);
-                  }}
-                >
+            {/* Right: Play Button and Heart Icon for Small Screens */}
+            <div className="flex items-center justify-end flex-1 md:w-1/3 space-x-2">
+              {/* Play Button for Small Screens (Visible Only on Small Screens) */}
+              <button className="w-10 h-10 rounded-full flex items-center justify-center hover:scale-105 transition-transform md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-play"><polygon points="6 3 20 12 6 21 6 3" /></svg>
+              </button>
 
-                </button>
+              {/* Heart Icon for Small Screens (Visible Only on Small Screens) */}
+              <button className="w-10 h-10 text-white rounded-full flex items-center justify-center hover:scale-105 transition-transform md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-heart"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /></svg>
+              </button>
 
-                {/* Animated Volume Slider */}
-                <div className={`
-                absolute bottom-full right-0 mb-2 p-2 bg-gray-800 rounded-lg
-                transform transition-all duration-200 origin-bottom-right
-                ${showVolume ? 'scale-100 opacity-100' : 'scale-95 opacity-0 pointer-events-none'}
-              `}>
-                  <div className="h-24 w-1 bg-gray-700 rounded-full relative">
-                    <div className="absolute bottom-0 left-0 right-0 bg-blue-500 rounded-full w-full h-1/2"></div>
-                    <div className="absolute bottom-1/2 left-1/2 -translate-x-1/2 w-3 h-3 bg-white rounded-full"></div>
+
+
+              {/* Volume Control (Hidden on Small Screens) */}
+              <div className="hidden md:flex items-center justify-end">
+                <div className="relative">
+                  <button
+                    className="p-2 text-gray-400 hover:text-white transition-colors"
+                    onClick={() => {
+                      setShowVolume(!showVolume);
+                      setIsMuted(false);
+                    }}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-volume-2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" /><path d="M15.54 8.46a5 5 0 0 1 0 7.07" /><path d="M19.07 4.93a10 10 0 0 1 0 14.14" /></svg>
+                  </button>
+
+                  {/* Animated Volume Slider */}
+                  <div className={`
+            absolute bottom-full right-0 mb-2 p-2 bg-gray-800 rounded-lg
+            transform transition-all duration-200 origin-bottom-right
+            ${showVolume ? 'scale-100 opacity-100' : 'scale-95 opacity-0 pointer-events-none'}
+          `}>
+                    <div className="h-24 w-1 bg-gray-700 rounded-full relative">
+                      <div className="absolute bottom-0 left-0 right-0 bg-blue-500 rounded-full w-full h-1/2"></div>
+                      <div className="absolute bottom-1/2 left-1/2 -translate-x-1/2 w-3 h-3 bg-white rounded-full"></div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      <AudioDetailPage isOpen={isOpen} onClose={() => setIsOpen(false)} />
       </div>
+      <AudioDetailPage isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>
   );
 };
