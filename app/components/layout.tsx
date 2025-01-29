@@ -9,19 +9,19 @@ const MusicPlayerLayout = ({ children }) => {
 
   return (
     <>
-      <div className="bg-black text-white min-h-screen flex flex-col">
+    <div className="bg-black text-white min-h-screen flex flex-col">
         {/* Header */}
         <header className="sticky top-0 z-40 bg-black/40 backdrop-blur-lg border-b border-gray-600">
           <div className="flex items-center justify-between px-4 lg:px-6 py-4">
             {/* Logo */}
             <div className="flex items-center">
-              <span className="text-xl font-bold mr-6">FlowTune</span>
+              <span className="text-xl font-bold mr-9">FlowTune</span>
 
               {/* Desktop Navigation */}
-              <nav className="hidden md:flex items-center space-x-6">
+              <nav className="hidden md:flex items-center space-x-9">
                 <button className="flex items-center hover:text-blue-500 transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-house"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg>
-                  <span className="hidden lg:inline ml-2">Home</span>
+                  <span className="hidden lg:inline ml-2 font-semibold">Home</span>
                 </button>
                 <button className="flex items-center hover:text-blue-500 transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-compass"><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z" /><circle cx="12" cy="12" r="10" /></svg>
@@ -47,7 +47,7 @@ const MusicPlayerLayout = ({ children }) => {
               </div>
 
               {/* Mobile Icons */}
-              <div className="flex md:hidden items-center space-x-6">
+              <div className="flex md:hidden items-center space-x-4">
                 <button className="hover:text-blue-500 transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-house"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg>
                 </button>
