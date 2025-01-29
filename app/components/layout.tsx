@@ -94,7 +94,7 @@ const MusicPlayerLayout = ({ children }) => {
             <div className="flex items-center flex-1 min-w-0 md:w-1/3">
               <div className="w-12 h-12 bg-gray-800 rounded-md overflow-hidden mr-3 flex-shrink-0">
                 <img
-                  src="/api/placeholder/48/48"
+                  src="https://m.media-amazon.com/images/I/51BSAVzJj3L._UX250_FMwebp_QL85_.jpg"
                   alt="Album Art"
                   className="w-full h-full object-cover"
                 />
