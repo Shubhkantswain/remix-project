@@ -22,16 +22,41 @@ const NowPlaying: React.FC<NowPlayingProps> = ({ showDetails, setShowDetails }) 
         showDetails ? 'translate-y-0' : 'translate-y-full'
       }`}
     >
-      {/* Background Image */}
+      {/* Enhanced Smooth Animated Gradient Background */}
       <div 
-        className="fixed inset-0 z-0 opacity-40"
+        className="fixed inset-0 z-0 opacity-40 will-change-transform"
         style={{
-          backgroundImage: 'url("https://m.media-amazon.com/images/I/51BSAVzJj3L._UX250_FMwebp_QL85_.jpg")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          filter: 'blur(10px)',
+          background: 'linear-gradient(-45deg, #2C3E50, #BDC3C7, #3498DB, #ECF0F1, #34495E, #95A5A6, #E0E0E0)',
+          backgroundSize: '400% 400%',
+          animation: 'gradientFlow 15s ease-in-out infinite',
+          filter: 'blur(120px)',
         }}
       />
+
+      <style>
+        {`
+          @keyframes gradientFlow {
+            0% {
+              background-position: 0% 50%;
+            }
+            50% {
+              background-position: 100% 50%;
+            }
+            100% {
+              background-position: 0% 50%;
+            }
+          }
+
+          @keyframes pulseBackground {
+            0%, 100% {
+              filter: blur(120px);
+            }
+            50% {
+              filter: blur(130px);
+            }
+          }
+        `}
+      </style>
 
       <div className="relative z-10 max-w-3xl mx-auto min-h-full">
         {/* Header */}
@@ -51,11 +76,11 @@ const NowPlaying: React.FC<NowPlayingProps> = ({ showDetails, setShowDetails }) 
         <div className="px-8 pt-8 -mt-10">
           <div 
             className={`aspect-square w-full max-w-sm lg:max-w-[300px] lg:ml-0 mx-auto bg-zinc-800 rounded-lg mb-8 will-change-transform transition-transform duration-500 ease-out transform ${
-              isPlaying ? 'scale-100' : 'scale-95'
+              isPlaying && !window.matchMedia('(min-width: 1024px)').matches ? 'scale-95' : 'scale-100'
             }`}
           >
             <img
-              src="https://m.media-amazon.com/images/I/51BSAVzJj3L._UX250_FMwebp_QL85_.jpg"
+              src="/path-to-your-image.jpg"
               alt="Album art"
               className="w-full h-full object-cover rounded-lg"
             />
