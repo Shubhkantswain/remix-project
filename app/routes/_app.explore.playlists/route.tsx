@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react'
+import SpotifyMenu from '~/components/SpotifyMenu';
 
 function ExplorePlaylistsPage() {
     const [isPlaying, setIsPlaying] = React.useState(false);
@@ -41,7 +42,7 @@ function ExplorePlaylistsPage() {
 
     const playlist = {
         title: "Today's Top Hits",
-        coverImage: 'https://m.media-amazon.com/images/I/41u8hprs3sL._UX250_FMwebp_QL85_.jpg',
+        coverImage: 'https://m.media-amazon.com/images/S/dmp-catalog-images-prod/images/4731f943-5683-4832-b200-145fe1dc6172/4731f943-5683-4832-b200-145fe1dc6172--1619766509._SX576_SY576_BL0_QL100__UX250_FMwebp_QL85_.jpg',
         description: "The most popular tracks right now",
         totalSongs: 50,
         duration: "2 hr 45 min",
@@ -246,32 +247,6 @@ function ExplorePlaylistsPage() {
                                             <button className="cursor-pointer text-gray-400 hover:text-white ml-auto" onClick={(e) => handleDropdownClick(index, e)}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><defs><path id="ic_action_more-a" d="M19,14 C17.895,14 17,13.105 17,12 C17,10.895 17.895,10 19,10 C20.105,10 21,10.895 21,12 C21,13.105 20.105,14 19,14 Z M14,12 C14,10.895 13.105,10 12,10 C10.895,10 10,10.895 10,12 C10,13.105 10.895,14 12,14 C13.105,14 14,13.105 14,12 Z M7,12 C7,10.895 6.105,10 5,10 C3.895,10 3,10.895 3,12 C3,13.105 3.895,14 5,14 C6.105,14 7,13.105 7,12 Z"></path></defs><g fillRule="evenodd" fill="transparent"><rect width="24" height="24"></rect><use fill-rule="nonzero" href="#ic_action_more-a" fill="currentColor"></use></g></svg>
                                             </button>
-
-                                            {/* Dropdown Menu */}
-                                            {openDropdownIndex === index && (
-                                                <div
-                                                    ref={dropdownRef}
-                                                    className="fixed right-1/2 md:right-0 translate-x-1/2 md:translate-x-0 top-60 w-48 md:w-64 rounded-md shadow-lg z-50 origin-top-right animate-in fade-in slide-in-from-top-2 duration-200 backdrop-blur-md border border-[#5a5a5a]"
-                                                >
-                                                    <div className="py-1 divide-y divide-[#5a5a5a]">
-                                                        {dropdownItems.map((item, itemIndex) => (
-                                                            <button
-                                                                key={itemIndex}
-                                                                onClick={(e) => {
-                                                                    e.stopPropagation();
-                                                                    item.action();
-                                                                    setOpenDropdownIndex(null);
-                                                                }}
-                                                                className="w-full text-left px-4 py-2 text-sm md:text-base text-gray-300 hover:text-white hover:bg-[#3e3e3e] transition-colors duration-150 first:rounded-t-md last:rounded-b-md"
-                                                            >
-                                                                {item.label}
-                                                            </button>
-                                                        ))}
-                                                    </div>
-                                                </div>
-                                            )}
-
-
                                         </td>
                                     </tr>
                                 ))}
