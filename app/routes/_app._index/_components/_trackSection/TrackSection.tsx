@@ -10,7 +10,7 @@ function TrackSection() {
     const scroll = (direction: ScrollDirection): void => {
         if (containerRef.current && !isAnimating) {
             setIsAnimating(true);
-            const scrollAmount = 200;
+            const scrollAmount = 400;
             const container = containerRef.current;
             const currentScroll = container.scrollLeft;
             const targetScroll = direction === 'left'

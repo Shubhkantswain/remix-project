@@ -8,19 +8,26 @@
     "dev": "remix vite:dev",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "start": "remix-serve ./build/server/index.js",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "codegen": "graphql-codegen --config codegen.ts"
   },
   "dependencies": {
     "@remix-run/node": "^2.15.2",
     "@remix-run/react": "^2.15.2",
     "@remix-run/serve": "^2.15.2",
+    "@tanstack/react-query": "^5.66.0",
+    "cookie": "^1.0.2",
     "framer-motion": "^12.0.5",
+    "graphql": "^16.10.0",
     "isbot": "^4.1.0",
     "lucide-react": "^0.474.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "5.0.4",
+    "@graphql-codegen/client-preset": "^4.6.1",
+    "@graphql-codegen/introspection": "4.0.3",
     "@remix-run/dev": "^2.15.2",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
