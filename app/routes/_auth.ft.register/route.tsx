@@ -88,7 +88,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
             const graphqlClient = createGraphqlClient();
             const { verifyEmail } = await graphqlClient.request(verifyEmailMutation, { input: { username, fullName, email, password, token: verificationToken } })
 
-            const cookie = serialize("verifyemail.authToken", verifyEmail?.authToken || "", {
+            const cookie = serialize("__FlowTune_Token_server", verifyEmail?.authToken || "", {
                 maxAge: 60 * 60 * 24, // 1 day
                 httpOnly: true,
                 secure: true,

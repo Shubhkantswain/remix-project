@@ -5,7 +5,7 @@ const config: CodegenConfig = {
   overwrite: true,
   schema: "https://remix-project-server.onrender.com/graphql",
   documents: "**/*.{tsx,ts}",
-  generates: {
+  generates: {a
     "gql/": {
       preset: "client",
       plugins: []

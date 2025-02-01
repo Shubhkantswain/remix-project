@@ -4,6 +4,7 @@ import TrackSection from "./_components/_trackSection/TrackSection";
 const AppleMusicHomepage: React.FC = () => {
   const { data } = useCurrentUser()
 console.log("data", data);
+r
 
   return (
     <>

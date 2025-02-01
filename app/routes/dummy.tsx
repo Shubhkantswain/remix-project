@@ -11,7 +11,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const cookies = cookieHeader ? parse(cookieHeader) : {};
 
   // Extract the "__FlowTune_Token" cookie
-  const token = cookies["__FlowTune_Token"] ?? "";
+  const token = cookies["__FlowTune_Token_server"] ?? "";
 
   // Return the token to the frontend
   return json({ token });
