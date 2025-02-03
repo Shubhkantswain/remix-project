@@ -1,5 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { createGraphqlClient } from "~/clients/api";
+import { setCookieMutation } from "~/graphql/mutations/auth";
 import { getCurrentUserQuery } from "~/graphql/queries/auth";
 
 export const useCurrentUser = () => {
@@ -12,3 +13,17 @@ export const useCurrentUser = () => {
         },
     });
 };
+
+export const useSetCookie = () => {
+    return useMutation({
+        mutationFn: async (authToken: string) => {
+            const graphqlClient = createGraphqlClient()
+            const { setCookie } = await graphqlClient.request(setCookieMutation, { authToken })
+            return setCookie
+        },
+        onError: () => {
+
+        }
+    }
+    )
+}

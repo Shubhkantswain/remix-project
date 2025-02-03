@@ -1,12 +1,15 @@
 import { json, type ActionFunctionArgs, redirect, createCookie } from "@remix-run/node";
-import { Form, useActionData, useNavigation } from "@remix-run/react";
-import { useState } from "react";
+import { Form, useActionData, useNavigate, useNavigation } from "@remix-run/react";
+import { useEffect, useState } from "react";
 import { createGraphqlClient } from "~/clients/api";
 import { signupUserMutation, verifyEmailMutation } from "~/graphql/mutations/auth";
 import { serialize } from "cookie";
+import { useSetCookie } from "~/hooks/auth";
 
 interface ActionData {
     isSignupSuccess: boolean;
+    isVerifyEmailSuccess: boolean;
+    authToken?: string;
     data?: {
         username: string;
         fullName: string;
@@ -45,7 +48,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
         if (!gender) errors.gender = "Please select a gender.";
 
         if (Object.keys(errors).length > 0) {
-            return json<ActionData>({ isSignupSuccess: false, errors }, { status: 400 });
+            return json<ActionData>({ isSignupSuccess: false, isVerifyEmailSuccess: false, errors }, { status: 400 });
         }
 
         try {
@@ -56,6 +59,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
             return json<ActionData>({
                 isSignupSuccess: signupUser,
+                isVerifyEmailSuccess: false,
                 data: { username, fullName, email, password }
             });
 
@@ -63,6 +67,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
             return json<ActionData>(
                 {
                     isSignupSuccess: false,
+                    isVerifyEmailSuccess: false,
                     errors: {
                         general: error?.response?.errors?.[0]?.message || "Something went wrong"
                     }
@@ -80,6 +85,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
         if (!verificationToken) {
             return json<ActionData>({
                 isSignupSuccess: true,
+                isVerifyEmailSuccess: false,
                 errors: { verificationToken: "Verification code is required." }
             }, { status: 400 });
         }
@@ -96,13 +102,23 @@ export const action = async ({ request }: ActionFunctionArgs) => {
                 sameSite: "none",
             });
 
-            return redirect("/", {
-                headers: { "Set-Cookie": cookie },
-            });
+
+            return json<ActionData>(
+                {
+                    isSignupSuccess: true,
+                    isVerifyEmailSuccess: true,
+                    authToken: verifyEmail?.authToken
+                },
+                {
+                    status: 200,
+                    headers: { "Set-Cookie": cookie },
+                }
+            );
         } catch (error: any) {
             return json<ActionData>(
                 {
                     isSignupSuccess: true,
+                    isVerifyEmailSuccess: false,
                     errors: {
                         general: error?.response?.errors?.[0]?.message || "Verification failed"
                     }
@@ -119,6 +135,29 @@ export default function Register() {
     const [showPassword, setShowPassword] = useState(false);
     const isSubmitting = navigation.state === "submitting";
     const isSignupSucceded = actionData?.isSignupSuccess
+    const isVerifyEmailSucceded = actionData?.isVerifyEmailSuccess
+    const { mutateAsync, isPending } = useSetCookie()
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (isVerifyEmailSucceded) {
+            const handleSetCookie = async () => {
+                try {
+                    await mutateAsync(actionData?.authToken || "")
+                    navigate("/", {replace: true})
+                } catch (error) {
+                    console.error('Failed to set cookie', error);
+                }
+            };
+
+            handleSetCookie();
+        }
+    }, [isVerifyEmailSucceded]);
+
+    if(isPending) {
+        return <h1>Redirecting...</h1>
+    }
 
     return (
         <Form method="post" className="space-y-6 w-full max-w-sm text-black">

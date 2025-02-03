@@ -1,4 +1,4 @@
-import { graphql } from "gql";
+import { graphql } from "gql"
 
 export const signupUserMutation = graphql(`
     #graphql
@@ -19,5 +19,12 @@ export const verifyEmailMutation = graphql(`
             profileImageURL
             authToken
         }
+    }
+`)
+
+export const setCookieMutation = graphql(`
+    #graphql
+    mutation SetCookie($authToken: String!) {
+        setCookie(authToken: $authToken)
     }
 `)
