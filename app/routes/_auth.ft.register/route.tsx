@@ -1,31 +1,16 @@
-import { json, type ActionFunctionArgs, redirect, createCookie } from "@remix-run/node";
+import { json, type ActionFunctionArgs } from "@remix-run/node";
 import { Form, useActionData, useNavigate, useNavigation } from "@remix-run/react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { createGraphqlClient } from "~/clients/api";
 import { signupUserMutation, verifyEmailMutation } from "~/graphql/mutations/auth";
 import { serialize } from "cookie";
-import { useSetCookie } from "~/hooks/auth";
-
-interface ActionData {
-    isSignupSuccess: boolean;
-    isVerifyEmailSuccess: boolean;
-    authToken?: string;
-    data?: {
-        username: string;
-        fullName: string;
-        email: string;
-        password: string;
-    };
-    errors?: {
-        username?: string;
-        fullName?: string;
-        email?: string;
-        password?: string;
-        gender?: string;
-        general?: string;
-        verificationToken?: string;
-    };
-}
+import { useCurrentUser, useSetCookie } from "~/hooks/auth";
+import { FORM_TYPES } from "~/constants";
+import { ActionData } from "~/types";
+import VerifyEmailTokenForm from "./_components/VerifyEmailTokenForm";
+import SubmitButton from "./_components/SubmitButton";
+import GeneralError from "./_components/GeneralError";
+import RegisterForm from "./_components/RegisterForm";
 
 export const action = async ({ request }: ActionFunctionArgs) => {
     const formData = await request.formData();
@@ -131,198 +116,55 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
 export default function Register() {
     const actionData = useActionData<ActionData>();
-    const navigation = useNavigation();
-    const [showPassword, setShowPassword] = useState(false);
-    const isSubmitting = navigation.state === "submitting";
-    const isSignupSucceded = actionData?.isSignupSuccess
-    const isVerifyEmailSucceded = actionData?.isVerifyEmailSuccess
-    const { mutateAsync, isPending } = useSetCookie()
+    const routerNavigation = useNavigation();
+    const isSubmitting = routerNavigation.state === "submitting";
 
+    const isSignupSuccessful = actionData?.isSignupSuccess;
+    const isEmailVerificationSuccessful = actionData?.isVerifyEmailSuccess;
+
+    const { mutateAsync } = useSetCookie();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (isVerifyEmailSucceded) {
+        if (isEmailVerificationSuccessful) {
             const handleSetCookie = async () => {
                 try {
-                    await mutateAsync(actionData?.authToken || "")
-                    navigate("/", {replace: true})
+                    await mutateAsync(actionData?.authToken || "");
+                    navigate("/", { replace: true });
                 } catch (error) {
-                    console.error('Failed to set cookie', error);
+                    console.error("Failed to set cookie", error);
                 }
             };
 
             handleSetCookie();
         }
-    }, [isVerifyEmailSucceded]);
-
-    if(isPending) {
-        return <h1>Redirecting...</h1>
-    }
+    }, [isEmailVerificationSuccessful]);
 
     return (
         <Form method="post" className="space-y-6 w-full max-w-sm text-black">
-            <input type="hidden" name="formType" value={isSignupSucceded ? "verify" : "signup"} />
+            <input
+                type="hidden"
+                name="formType"
+                value={isSignupSuccessful ? FORM_TYPES.VERIFY : FORM_TYPES.SIGNUP}
+            />
 
             {/* General Error */}
             {actionData?.errors?.general && (
-                <div className="rounded-md bg-red-600 text-white p-3 flex justify-between items-center">
-                    <span className="text-sm font-medium">{actionData.errors.general}</span>
-                    <button className="text-lg font-bold">❌</button>
-                </div>
+                <GeneralError error={actionData.errors.general} />
             )}
 
-            {isSignupSucceded ? (
-                /* Verification Token only */
+            {!isSignupSuccessful ? (
                 <>
-                    <input type="hidden" name="username" value={actionData.data?.username} />
-                    <input type="hidden" name="fullName" value={actionData.data?.fullName} />
-                    <input type="hidden" name="email" value={actionData.data?.email} />
-                    <input type="hidden" name="password" value={actionData.data?.password} />
-
-
-                    <div>
-                        <label htmlFor="verificationToken" className="block text-sm font-medium text-black">
-                            Verification Code
-                        </label>
-                        <input
-                            id="verificationToken"
-                            name="verificationToken"
-                            type="text"
-                            placeholder="Enter verification code"
-                            className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-white text-black focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                        />
-                        {actionData?.errors?.verificationToken && (
-                            <p className="mt-2 text-sm text-red-600 flex items-center gap-1">
-                                ⚠️ {actionData.errors.verificationToken}
-                            </p>
-                        )}
-                    </div>
+                    <RegisterForm actionData={actionData} />
                 </>
             ) : (
                 <>
-                    {/* Username */}
-                    <div>
-                        <label htmlFor="username" className="block text-sm font-medium text-black">
-                            Username
-                        </label>
-                        <input
-                            id="username"
-                            name="username"
-                            type="text"
-                            autoComplete="username"
-                            className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-white text-black focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                        />
-                        {actionData?.errors?.username && (
-                            <p className="mt-2 text-sm text-red-600 flex items-center gap-1">
-                                ⚠️ {actionData.errors.username}
-                            </p>
-                        )}
-                    </div>
-
-                    {/* Full Name */}
-                    <div>
-                        <label htmlFor="fullName" className="block text-sm font-medium text-black">
-                            Full Name
-                        </label>
-                        <input
-                            id="fullName"
-                            name="fullName"
-                            type="text"
-                            autoComplete="name"
-                            className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-white text-black focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                        />
-                        {actionData?.errors?.fullName && (
-                            <p className="mt-2 text-sm text-red-600 flex items-center gap-1">
-                                ⚠️ {actionData.errors.fullName}
-                            </p>
-                        )}
-                    </div>
-
-                    {/* Email */}
-                    <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-black">
-                            Email address
-                        </label>
-                        <input
-                            id="email"
-                            name="email"
-                            type="email"
-                            autoComplete="email"
-                            className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-white text-black focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                        />
-                        {actionData?.errors?.email && (
-                            <p className="mt-2 text-sm text-red-600 flex items-center gap-1">
-                                ⚠️ {actionData.errors.email}
-                            </p>
-                        )}
-                    </div>
-
-                    {/* Gender */}
-                    <div>
-                        <label htmlFor="gender" className="block text-sm font-medium text-black">
-                            Gender
-                        </label>
-                        <select
-                            id="gender"
-                            name="gender"
-                            className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-white text-black focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                        >
-                            <option value="">Select gender</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="other">Other</option>
-                        </select>
-                        {actionData?.errors?.gender && (
-                            <p className="mt-2 text-sm text-red-600 flex items-center gap-1">
-                                ⚠️ {actionData.errors.gender}
-                            </p>
-                        )}
-                    </div>
-
-                    {/* Password */}
-                    <div>
-                        <label htmlFor="password" className="block text-sm font-medium text-black">
-                            Password
-                        </label>
-                        <div className="mt-1 relative">
-                            <input
-                                id="password"
-                                name="password"
-                                type={showPassword ? "text" : "password"}
-                                autoComplete="new-password"
-                                className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-white text-black focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            />
-                            <button
-                                type="button"
-                                className="absolute inset-y-0 right-0 pr-3 flex items-center text-black"
-                                onClick={() => setShowPassword(!showPassword)}
-                                aria-label={showPassword ? "Hide password" : "Show password"}
-                            >
-                                {showPassword ? "🙈" : "👁"}
-                            </button>
-                        </div>
-                        {actionData?.errors?.password && (
-                            <p className="mt-2 text-sm text-red-600 flex items-center gap-1">
-                                ⚠️ {actionData.errors.password}
-                            </p>
-                        )}
-                    </div>
+                    <VerifyEmailTokenForm actionData={actionData} />
                 </>
             )}
 
             {/* Submit Button */}
-            <div>
-                <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
-                >
-                    {isSubmitting
-                        ? (isSignupSucceded ? "Verifying..." : "Creating account...")
-                        : (isSignupSucceded ? "Verify Email" : "Create account")
-                    }
-                </button>
-            </div>
+            <SubmitButton isSubmitting={isSubmitting} isSignupSuccessful={isSignupSuccessful} />
         </Form>
     );
 }

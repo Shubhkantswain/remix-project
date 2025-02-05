@@ -20,7 +20,7 @@ function CenterPlaybackControllers() {
                 {/* <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-skip-back"><polygon points="19 20 9 12 19 4 19 20" /><line x1="5" x2="5" y1="19" y2="5" /></svg> */}
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><defs><path id="ic_playback_previous-a" d="M18.462,4.113 C18.131,3.943 17.733,3.967 17.427,4.181 L9,10.079 L9,4 C9,3.45 8.55,3 8,3 L6,3 C5.45,3 5,3.45 5,4 L5,20 C5,20.55 5.45,21 6,21 L8,21 C8.55,21 9,20.55 9,20 L9,13.921 L17.427,19.82 C17.598,19.939 17.799,20 18,20 C18.158,20 18.316,19.963 18.462,19.887 C18.793,19.715 19,19.373 19,19 L19,5 C19,4.627 18.793,4.285 18.462,4.113 Z"></path></defs><g fill-rule="evenodd" fill="transparent"><rect width="24" height="24"></rect><use href="#ic_playback_previous-a" fill="currentColor"></use></g></svg>
             </button>
-            <button className="w-12 h-12 bg-[#272727] text-[#272727] rounded-full flex items-center justify-center hover:scale-105 transition-transform">
+            <button className="w-12 h-12 hover:bg-[#727171] bg-[#313232] hover:text-[#727171] text-[#313232] rounded-full flex items-center justify-center hover:scale-105 transition-transform">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-play"><polygon points="6 3 20 12 6 21 6 3" /></svg>
             </button>
             <button className="p-2 text-white hover:text-white transition-colors">

@@ -1,10 +1,41 @@
-// File: app/routes/_app.tsx
-import { Link, Outlet } from "@remix-run/react";
+import { LoaderFunction, redirect } from "@remix-run/node";
+import { Link, Outlet, useNavigate } from "@remix-run/react";
+import { parse } from "cookie";
+import { useEffect } from "react";
+import { useCurrentUser } from "~/hooks/auth";
+
+// Loader function to check for the cookie
+export const loader: LoaderFunction = async ({ request }) => {
+  const cookieHeader = request.headers.get("Cookie");
+
+  const cookies = cookieHeader ? parse(cookieHeader) : {};
+
+  const token = cookies["__FlowTune_Token_server"] ?? "";
+
+  if (token) {
+    return redirect("/")
+  }
+
+  return null
+};
 
 export default function FtLayout() {
+  const { data, isLoading } = useCurrentUser()
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (data) {
+      navigate("/", { replace: true })
+    }
+  }, [data])
+
+  if(isLoading || data){
+    return null
+  }
+
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">    
+      <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="text-center mt-6">
           <h2 className="text-3xl font-extrabold text-gray-900">
             Welcome Back To FlowTune
@@ -12,11 +43,9 @@ export default function FtLayout() {
         </div>
 
         <div className="mt-8 bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          {/* Google Sign In Button at Top */}
+          {/* Google Sign In Button */}
           <div>
-            <button
-              className="w-full inline-flex justify-center items-center gap-2 py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-            >
+            <button className="w-full inline-flex justify-center items-center gap-2 py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
               <svg className="h-5 w-5" viewBox="0 0 24 24">
                 <path
                   d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -57,16 +86,16 @@ export default function FtLayout() {
 
           <div className="mt-6">
             <div className="text-sm text-center text-gray-600">
-              Protected by reCAPTCHA and subject to our{' '}
-              <Link 
-                to="/privacy" 
+              Protected by reCAPTCHA and subject to our{" "}
+              <Link
+                to="/privacy"
                 className="font-medium text-blue-600 hover:text-blue-500"
               >
                 Privacy Policy
-              </Link>
-              {' '}and{' '}
-              <Link 
-                to="/terms" 
+              </Link>{" "}
+              and{" "}
+              <Link
+                to="/terms"
                 className="font-medium text-blue-600 hover:text-blue-500"
               >
                 Terms of Service

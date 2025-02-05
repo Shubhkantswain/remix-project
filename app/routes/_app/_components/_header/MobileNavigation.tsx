@@ -1,7 +1,9 @@
 import { Link } from '@remix-run/react'
-import React from 'react'
+import React, { useState } from 'react'
 
-function MobileNavigation() {
+const MobileNavigation = () => {
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+
     return (
         <div className="flex md:hidden items-center space-x-5">
             <button className="hover:text-[#fa586a] transition-colors">
@@ -24,9 +26,34 @@ function MobileNavigation() {
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-search"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>
                 </Link>
             </button>
-            <button className="hover:text-[#fa586a] transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-circle-user"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="10" r="3" /><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662" /></svg>
+            <button 
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)} 
+                className="hover:text-[#fa586a] transition-colors"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24"><defs><path id="ic_navigation_profile-a" d="M7,6 C7,3.239 9.239,1 12,1 C14.761,1 17,3.239 17,6 C17,8.761 14.761,11 12,11 C9.239,11 7,8.761 7,6 Z M21.948,18.684 C20.868,15.443 17.015,12 12,12 C6.985,12 3.131,15.443 2.051,18.684 C1.931,19.043 2.025,19.44 2.293,19.707 C4.417,21.83 7.864,23 12,23 C16.137,23 19.584,21.83 21.707,19.707 C21.975,19.439 22.068,19.043 21.948,18.684 Z"></path></defs><g fill-rule="evenodd" fill="transparent"><rect width="24" height="24"></rect><use fill-rule="nonzero" href="#ic_navigation_profile-a" fill="currentColor"></use></g></svg>
             </button>
+
+            {/* Dropdown Menu */}
+            {isDropdownOpen && (
+                <div className="absolute right-4 top-16 w-48 rounded-md shadow-lg transform transition-all duration-300 origin-top-right">
+                    <div className="backdrop-blur-lg bg-black/50 rounded-md shadow-xl border border-gray-700">
+                        <div className="py-1">
+                            <Link to="/profile" className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700/50 hover:text-white">
+                                Profile
+                            </Link>
+                            <Link to="/settings" className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700/50 hover:text-white">
+                                Settings
+                            </Link>
+                            <button 
+                                className="block w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-700/50 hover:text-white"
+                                onClick={() => {/* Add logout logic */}}
+                            >
+                                Sign out
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }

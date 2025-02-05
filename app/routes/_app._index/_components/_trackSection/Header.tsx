@@ -34,7 +34,7 @@ const Header: React.FC<HeaderProps> = ({ scroll }) => {
                         </button>
                     </div>
                     <button
-                        className="w-full font-bold sm:w-auto py-1 px-3 text-xs sm:text-sm bg-[#29292a] text-white rounded-full transition-transform transform hover:scale-110 duration-300 ease-in-out"
+                        className="w-full font-bold sm:w-auto py-1 px-3 text-xs sm:text-sm hover:bg-[#727171] bg-[#313232] text-white rounded-full transition-transform transform hover:scale-105 duration-300 ease-in-out"
                         aria-label="Show all songs"
                     >
                         Show All

@@ -17,12 +17,14 @@ type Documents = {
     "\n    #graphql\n    mutation SignupUser($input: SignupUserInput!) {\n        signupUser(input: $input)\n    }\n": typeof types.SignupUserDocument,
     "\n    #graphql\n    mutation VerifyEmail($input: VerifyEmailInput!) {\n        verifyEmail(input: $input) {\n            id\n            email\n            username\n            fullName\n            bio\n            profileImageURL\n            authToken\n        }\n    }\n": typeof types.VerifyEmailDocument,
     "\n    #graphql\n    mutation SetCookie($authToken: String!) {\n        setCookie(authToken: $authToken)\n    }\n": typeof types.SetCookieDocument,
+    "\n    #graphql\n    mutation CreateTrack($payload: createTrackPayload!) {\n        createTrack(payload: $payload) {\n            id\n            title\n            artist\n            duration\n            coverImageUrl\n            audioFileUrl\n            hasLiked\n            authorName\n        }\n    }\n": typeof types.CreateTrackDocument,
     "\n    #graphql\n    query GetCurrentUser {\n        getCurrentUser {\n            id\n            email\n            username\n            fullName\n            bio\n            profileImageURL\n        }\n    }\n": typeof types.GetCurrentUserDocument,
 };
 const documents: Documents = {
     "\n    #graphql\n    mutation SignupUser($input: SignupUserInput!) {\n        signupUser(input: $input)\n    }\n": types.SignupUserDocument,
     "\n    #graphql\n    mutation VerifyEmail($input: VerifyEmailInput!) {\n        verifyEmail(input: $input) {\n            id\n            email\n            username\n            fullName\n            bio\n            profileImageURL\n            authToken\n        }\n    }\n": types.VerifyEmailDocument,
     "\n    #graphql\n    mutation SetCookie($authToken: String!) {\n        setCookie(authToken: $authToken)\n    }\n": types.SetCookieDocument,
+    "\n    #graphql\n    mutation CreateTrack($payload: createTrackPayload!) {\n        createTrack(payload: $payload) {\n            id\n            title\n            artist\n            duration\n            coverImageUrl\n            audioFileUrl\n            hasLiked\n            authorName\n        }\n    }\n": types.CreateTrackDocument,
     "\n    #graphql\n    query GetCurrentUser {\n        getCurrentUser {\n            id\n            email\n            username\n            fullName\n            bio\n            profileImageURL\n        }\n    }\n": types.GetCurrentUserDocument,
 };
 
@@ -52,6 +54,10 @@ export function graphql(source: "\n    #graphql\n    mutation VerifyEmail($input
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n    #graphql\n    mutation SetCookie($authToken: String!) {\n        setCookie(authToken: $authToken)\n    }\n"): (typeof documents)["\n    #graphql\n    mutation SetCookie($authToken: String!) {\n        setCookie(authToken: $authToken)\n    }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n    #graphql\n    mutation CreateTrack($payload: createTrackPayload!) {\n        createTrack(payload: $payload) {\n            id\n            title\n            artist\n            duration\n            coverImageUrl\n            audioFileUrl\n            hasLiked\n            authorName\n        }\n    }\n"): (typeof documents)["\n    #graphql\n    mutation CreateTrack($payload: createTrackPayload!) {\n        createTrack(payload: $payload) {\n            id\n            title\n            artist\n            duration\n            coverImageUrl\n            audioFileUrl\n            hasLiked\n            authorName\n        }\n    }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
