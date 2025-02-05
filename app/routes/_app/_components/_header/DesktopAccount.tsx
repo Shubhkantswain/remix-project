@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { LogOut, Settings, User, HelpCircle } from 'lucide-react';
+// import { LogOut, Settings, User, HelpCircle } from 'lucide-react';
 
 function DesktopAccount() {
     const [isOpen, setIsOpen] = useState(false);
 
-    const menuItems = [
-        { icon: <User className="w-4 h-4" />, text: 'Profile' },
-        { icon: <Settings className="w-4 h-4" />, text: 'Settings' },
-        { icon: <HelpCircle className="w-4 h-4" />, text: 'Help' },
-        { icon: <LogOut className="w-4 h-4" />, text: 'Logout' }
-    ];
+    // const menuItems = [
+    //     { icon: <User className="w-4 h-4" />, text: 'Profile' },
+    //     { icon: <Settings className="w-4 h-4" />, text: 'Settings' },
+    //     { icon: <HelpCircle className="w-4 h-4" />, text: 'Help' },
+    //     { icon: <LogOut className="w-4 h-4" />, text: 'Logout' }
+    // ];
 
     return (
         <div className="hidden md:block relative">
@@ -26,7 +26,7 @@ function DesktopAccount() {
                     transform origin-top-right transition-all duration-200 ease-in-out overflow-hidden
                     ${isOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0 pointer-events-none'}`}
             >
-                {menuItems.map((item, index) => (
+                {/* {menuItems.map((item, index) => (
                     <div key={index}>
                         <button
                             className="w-full px-4 py-3 text-sm hover:bg-white/10 flex items-center space-x-2 transition-colors"
@@ -39,7 +39,7 @@ function DesktopAccount() {
                             <div className="h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent mx-2" />
                         )}
                     </div>
-                ))}
+                ))} */}
             </div>
         </div>
     );
