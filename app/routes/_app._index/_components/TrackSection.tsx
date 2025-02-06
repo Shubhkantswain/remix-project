@@ -47,9 +47,9 @@ function TrackSection({tracks}: {tracks: Track[]}) {
 
     return (
         <div className="text-white p-4 sm:p-6 md:p-8">
-            {/* Haeder:- which include the title, left and right arrows and see all button*/}
+            {/* Haeder:- which include the title, left and right arrows and see all button //*/}
             <Header scroll={scroll} />
-
+                
             <div className="relative">
                 <div
                     ref={containerRef}
