@@ -4,10 +4,10 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "build": "remix vite:build",
+    "build": "remix build",
+    "start": "remix-serve build",
     "dev": "remix vite:dev",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
-    "start": "remix-serve ./build/server/index.js",
     "typecheck": "tsc",
     "codegen": "graphql-codegen --config codegen.ts"
   },
@@ -16,6 +16,7 @@
     "@emotion/react": "^11.14.0",
     "@headlessui/react": "^2.2.0",
     "@radix-ui/react-dialog": "^1.1.5",
+    "@remix-run/netlify": "^1.19.3",
     "@remix-run/node": "^2.15.2",
     "@remix-run/react": "^2.15.2",
     "@remix-run/serve": "^2.15.2",
