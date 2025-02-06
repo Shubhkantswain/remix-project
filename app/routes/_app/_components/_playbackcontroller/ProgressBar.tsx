@@ -11,6 +11,9 @@ function ProgressBar({
     currentTime: string;
     duration: string;
 }) {
+
+    console.log(duration);
+    
     return (
         <div className="relative w-full h-0.5 bg-[#292a2a] cursor-pointer group" onClick={handleSeek}>
             <div className="absolute top-[-20px] left-0 text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity">
