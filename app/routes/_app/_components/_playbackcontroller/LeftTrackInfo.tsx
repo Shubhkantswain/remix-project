@@ -1,7 +1,7 @@
 import React from 'react';
 import { Maximize2 } from 'lucide-react';
 import { useTrackStore } from '~/store/useTrackStore';
-import PlaceholderTrack from '~/routes/_app._index/_components/PlaceHolderTrack';
+import PlaceholderTrack from '~/routes/_app._index/_components/PlaceholderTrack';
 
 type LeftTrackInfoProps = {
     setIsOpen: (isOpen: boolean) => void;
