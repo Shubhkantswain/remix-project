@@ -88,7 +88,7 @@ const UserPage = () => {
                       <div className="flex justify-between items-center">
                         <div className="space-y-1 flex-1">
                           <div className="text-gray-400 text-xs md:text-sm">{track.date}</div>
-                          <h3 className="font-medium text-base md:text-lg truncate text-[#fa586a]">{track.title}</h3>
+                          <h3 className="font-medium text-base md:text-lg truncate">{track.title}</h3>
                           <p className="text-gray-400 text-xs md:text-sm line-clamp-2 max-w-2xl">{track.description}</p>
                         </div>
                         <div className="hidden md:flex items-center gap-4 ml-4">

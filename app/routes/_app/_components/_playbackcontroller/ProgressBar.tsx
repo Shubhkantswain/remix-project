@@ -1,13 +1,29 @@
-import React from 'react'
+import React from 'react';
 
-function ProgressBar() {
+function ProgressBar({
+    progress,
+    handleSeek,
+    currentTime,
+    duration
+}: {
+    progress: number;
+    handleSeek: (event: React.MouseEvent<HTMLDivElement>) => void;
+    currentTime: string;
+    duration: string;
+}) {
     return (
-        <div className="w-full h-0.5 bg-gray-800">
-            <div className="relative w-1/3 h-full bg-white group">
-                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div className="relative w-full h-0.5 bg-[#292a2a] cursor-pointer group" onClick={handleSeek}>
+            <div className="absolute top-[-20px] left-0 text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                {currentTime}
+            </div>
+            <div className="absolute top-[-20px] right-0 text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                {duration}
+            </div>
+            <div className="relative h-full bg-white" style={{ width: `${progress}%` }}>
+                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </div>
         </div>
-    )
+    );
 }
 
-export default ProgressBar
+export default ProgressBar;

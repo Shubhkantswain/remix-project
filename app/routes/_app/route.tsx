@@ -6,8 +6,6 @@ import Playbackcontroller from "./_components/_playbackcontroller/Playbackcontro
 import NowPlaying from "./_components/_nowPlayling/NowPlaying";
 
 export default function AppLayout() {
-   const [isOpen, setIsOpen] = useState(false) 
-
     return (
         <>
             <div className="bg-[#090a0a] text-white min-h-screen flex flex-col">
@@ -20,10 +18,8 @@ export default function AppLayout() {
                 </main>
 
                 {/* Playback Controller */}
-                <Playbackcontroller setIsOpen={setIsOpen} />
+                <Playbackcontroller />
             </div>
-
-            <NowPlaying isOpen={isOpen} setIsOpen={setIsOpen} />
         </>
     );
 }

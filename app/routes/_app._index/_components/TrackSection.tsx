@@ -2,8 +2,9 @@ import React, { useRef, useState } from 'react'
 import Header from './Header';
 import TrackLists from './TrackLists';
 import { ScrollDirection } from '~/types';
+import { Track } from 'gql/graphql';
 
-function TrackSection() {
+function TrackSection({tracks}: {tracks: Track[]}) {
     const containerRef = useRef<HTMLDivElement>(null);
     const [isAnimating, setIsAnimating] = useState<boolean>(false);
 
@@ -55,7 +56,7 @@ function TrackSection() {
                     className="flex gap-4 sm:gap-5 md:gap-8 overflow-x-auto scrollbar-hide [-webkit-overflow-scrolling:touch] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden font-serif"
                     style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                 >
-                    <TrackLists/>
+                    <TrackLists tracks={tracks}/>
                 </div>
             </div>
         </div>

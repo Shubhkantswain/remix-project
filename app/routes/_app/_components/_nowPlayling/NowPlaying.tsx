@@ -3,14 +3,20 @@ import Header from './Header';
 import TrackInfo from './TrackInfo';
 import ProgressBar from './ProgressBar';
 import TrackControllers from './TrackControllers';
+import { useTrackStore } from '~/store/useTrackStore';
 
 interface NowPlayingProps {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  progress: number;
+  currentTime: string;
+  duration: string;
+  handleSeek: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
-const NowPlaying: React.FC<NowPlayingProps> = ({ isOpen, setIsOpen }) => {
+const NowPlaying: React.FC<NowPlayingProps> = ({ isOpen, setIsOpen, progress, currentTime, duration, handleSeek }) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const { trackDetails } = useTrackStore()
 
   useEffect(() => {
     if (isOpen) {
@@ -29,7 +35,7 @@ const NowPlaying: React.FC<NowPlayingProps> = ({ isOpen, setIsOpen }) => {
       <div
         className="fixed inset-0 z-0 opacity-40"
         style={{
-          backgroundImage: 'url("https://m.media-amazon.com/images/I/51BSAVzJj3L._UX250_FMwebp_QL85_.jpg")',
+          backgroundImage: `url(${trackDetails.coverImageUrl})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           filter: 'blur(10px)',
@@ -44,7 +50,7 @@ const NowPlaying: React.FC<NowPlayingProps> = ({ isOpen, setIsOpen }) => {
         <TrackInfo />
 
         {/* Progress Bar */}
-        <ProgressBar />
+        <ProgressBar progress={progress} currentTime={currentTime} duration={duration} handleSeek={handleSeek}/>
 
         {/* Controls */}
         <TrackControllers />

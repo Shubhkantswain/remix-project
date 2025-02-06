@@ -1,6 +1,9 @@
 import React from 'react'
+import { useTrackStore } from '~/store/useTrackStore'
 
 function TrackInfo() {
+    const { trackDetails } = useTrackStore()
+
     return (
         <div className="px-8 pt-8 -mt-10">
             <div
@@ -8,15 +11,15 @@ function TrackInfo() {
                     }`}
             >
                 <img
-                    src="https://m.media-amazon.com/images/I/51BSAVzJj3L._UX250_FMwebp_QL85_.jpg"
+                    src={trackDetails.coverImageUrl || ""}
                     alt="Album art"
                     className="w-full h-full object-cover rounded-lg"
                 />
             </div>
 
             <div className="space-y-1 text-center lg:text-left">
-                <h2 className="text-2xl md:text-3xl font-semibold transition-all duration-300">Song Title</h2>
-                <p className="text-zinc-400 transition-all duration-300">Artist Name</p>
+                <h2 className="text-2xl md:text-3xl font-semibold transition-all duration-300">{trackDetails.title}</h2>
+                <p className="text-zinc-400 transition-all duration-300">{trackDetails.artist}</p>
             </div>
         </div>
     )
