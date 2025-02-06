@@ -7,7 +7,7 @@ interface TrackStore {
         title: string;
         artist: string;
         duration: string;
-        coverImageUrl: string | null;
+        coverImageUrl: string | null;         
         audioFileUrl: string;
         hasLiked: boolean;
         authorName: string;
